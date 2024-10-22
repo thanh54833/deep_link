@@ -47,9 +47,21 @@ class MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(title: const Text('Deeplink Example')),
-        body: Center(child: Text(url ?? 'Listening for deeplinks...')),
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Text(
+              url ?? 'Listening for deeplinks...',
+              style: const TextStyle(
+                fontSize: 20,
+                color: Colors.black,
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
