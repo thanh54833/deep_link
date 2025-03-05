@@ -22,6 +22,12 @@ class WebViewExample extends StatefulWidget {
 class _WebViewExampleState extends State<WebViewExample> {
   late WebViewController controller;
 
+  Future<void> _handleDeepLink(String url) async {
+    // Parse the URL and navigate to the appropriate page in your app
+    // Example: navigate to a specific screen based on the deep link
+    // Navigator.pushNamed(context, '/yourDeepLinkPage', arguments: url);
+  }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -38,14 +44,22 @@ class _WebViewExampleState extends State<WebViewExample> {
           onPageFinished: (String url) {},
           onWebResourceError: (WebResourceError error) {},
           onNavigationRequest: (NavigationRequest request) {
-            if (request.url.startsWith('https://www.youtube.com/')) {
-              return NavigationDecision.prevent;
-            }
+            // if (!request.isMainFrame) {
+            //   return NavigationDecision.prevent;
+            // }
+            // print("request :.. ${request.url} ${request.isMainFrame}");
+            // if (request.url.contains('concung.com')) {
+            //   // Prevent navigation to the Con Cung app
+            //   print("request :.. ${request.url} ${request.isMainFrame}");
+            //   //controller.loadRequest(Uri.parse(request.url));
+            //   _handleDeepLink(request.url);
+            //   return NavigationDecision.prevent;
+            // }
             return NavigationDecision.navigate;
           },
         ),
       )
-      ..loadRequest(Uri.parse('http://10.10.11.88:3000'));
+      ..loadRequest(Uri.parse('https://dl.thanh-1122.duckdns.org'));
   }
 
   @override
