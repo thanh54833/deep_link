@@ -1,6 +1,7 @@
 // import 'package:uni_links/uni_links.dart' as uni_links;
 import 'dart:async';
 
+import 'package:app_links/app_links.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,7 +16,8 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp> {
-  StreamSubscription<String>? _sub;
+  final appLinks = AppLinks(); // AppLinks is singleton
+  late StreamSubscription<Uri> sub;
   String? url;
 
   @override
@@ -26,14 +28,15 @@ class MyAppState extends State<MyApp> {
 
   Future<void> initUniLinks() async {
     try {
-      // _sub = uni_links.linkStream.listen((String? uri) {
-      //   if (uri != null) {
-      //     // Xử lý deeplink tại đây
-      //     setState(() {
-      //       url = uri;
-      //     });
-      //   }
-      // }) as StreamSubscription<String>?;
+      var uri = await appLinks.getInitialAppLink();
+      setState(() {
+        url = uri?.toString();
+      });
+      sub = appLinks.uriLinkStream.listen((uri) {
+        setState(() {
+          url = uri.toString();
+        });
+      });
     } catch (e) {
       print(e);
     }
@@ -41,7 +44,7 @@ class MyAppState extends State<MyApp> {
 
   @override
   void dispose() {
-    _sub?.cancel();
+    sub?.cancel();
     super.dispose();
   }
 
