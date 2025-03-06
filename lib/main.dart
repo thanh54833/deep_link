@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:uni_links/uni_links.dart' as uni_links;
+// import 'package:uni_links/uni_links.dart' as uni_links;
 import 'dart:async';
+
+import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,14 +26,14 @@ class MyAppState extends State<MyApp> {
 
   Future<void> initUniLinks() async {
     try {
-      _sub = uni_links.linkStream.listen((String? uri) {
-        if (uri != null) {
-          // Xử lý deeplink tại đây
-          setState(() {
-            url = uri;
-          });
-        }
-      }) as StreamSubscription<String>?;
+      // _sub = uni_links.linkStream.listen((String? uri) {
+      //   if (uri != null) {
+      //     // Xử lý deeplink tại đây
+      //     setState(() {
+      //       url = uri;
+      //     });
+      //   }
+      // }) as StreamSubscription<String>?;
     } catch (e) {
       print(e);
     }
