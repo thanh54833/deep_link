@@ -44,7 +44,7 @@ class MyAppState extends State<MyApp> {
 
   @override
   void dispose() {
-    sub?.cancel();
+    sub.cancel();
     super.dispose();
   }
 
