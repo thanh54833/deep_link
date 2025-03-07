@@ -1,4 +1,4 @@
-package com.example.deep_link
+package com.concung.ecapp
 
 import io.flutter.embedding.android.FlutterActivity
 
